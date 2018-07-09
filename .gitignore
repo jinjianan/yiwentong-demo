@@ -1,0 +1,16 @@
+########################
+#
+#   GIT IGNORE
+#
+########################
+
+# idea project
+.idea
+*.iml
+
+# java
+*.class
+
+# maven
+*/target
+/target
