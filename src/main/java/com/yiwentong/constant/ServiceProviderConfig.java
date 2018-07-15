@@ -8,15 +8,15 @@ import okhttp3.MediaType;
 public  class ServiceProviderConfig {
 
     //请求地址
-    public static final String URL = "http://localhost:30002/v1/";
+    public static final String URL = "http://api.ideaforces.com/v1/";
 
     // MEDIA TYPE
     public static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");
 
     //服务商编号
-    public static final String SERVICE_PROVIDER_ID = "100000000";
+    public static final String SERVICE_PROVIDER_ID = "";
 
     //服务商秘钥
-    public static final String SERVICE_PROVIDER_SECRET_KEY = "e1f0d9e0ce8f44fabf4c6d72d476fa8d";
+    public static final String SERVICE_PROVIDER_SECRET_KEY = "";
 
 }
