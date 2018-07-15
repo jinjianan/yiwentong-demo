@@ -1,21 +1,24 @@
 package com.yiwentong.dto;
 
-public class CardRegisterSmsRequestDTO {
-
-    // token
-    private String token;
+public class ConsumeRequestDTO {
 
     // 服务商编号
     private String serviceProviderId;
 
-    // 商户编号
-    private String merchantId;
+    // token
+    private String token;
 
-    //订单编号
+    //订单号
     private String orderId;
+
+    //商户ID
+    private String merchantId;
 
     //费率编号
     private String rateId;
+
+    // 金额
+    private String amount;
 
     // 持卡人姓名
     private String cardHolder;
@@ -29,16 +32,22 @@ public class CardRegisterSmsRequestDTO {
     // 结算卡预留手机号
     private String phone;
 
+    //信用卡：安全码
+    private String cvn2;
+
+    //信用卡：有效期
+    private String expiration;
+
     //签名
     private String signature;
 
 
-    public String getToken() {
-        return token;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getServiceProviderId() {
@@ -49,6 +58,14 @@ public class CardRegisterSmsRequestDTO {
         this.serviceProviderId = serviceProviderId;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public String getMerchantId() {
         return merchantId;
     }
@@ -57,20 +74,20 @@ public class CardRegisterSmsRequestDTO {
         this.merchantId = merchantId;
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
     public String getRateId() {
         return rateId;
     }
 
     public void setRateId(String rateId) {
         this.rateId = rateId;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getCardHolder() {
@@ -103,6 +120,22 @@ public class CardRegisterSmsRequestDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getCvn2() {
+        return cvn2;
+    }
+
+    public void setCvn2(String cvn2) {
+        this.cvn2 = cvn2;
+    }
+
+    public String getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
     }
 
     public String getSignature() {

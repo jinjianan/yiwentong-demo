@@ -12,11 +12,12 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.UUID;
 
 /**
- * 开卡
+ * 支付
  */
-public class CardRegister {
+public class Consume {
 
     public static void main(String[] args) throws IOException{
 
@@ -24,15 +25,18 @@ public class CardRegister {
         String token = TokenCore.getToken(
                 ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,
                 ServiceProviderConfig.SERVICE_PROVIDER_ID,
-                TokenType.CARD_BIND);
+                TokenType.PAY);
 
         //构建签名参数
-        CardRegisterRequstDTO requestDTO = new CardRegisterRequstDTO();
+        ConsumeRequestDTO requestDTO = new ConsumeRequestDTO();
         requestDTO.setServiceProviderId(ServiceProviderConfig.SERVICE_PROVIDER_ID);
         requestDTO.setToken(token);
-        requestDTO.setMerchantId("");
+        requestDTO.setOrderId(UUID.randomUUID().toString().replace("-",""));
+//        requestDTO.setOrderId("e3aca0d0ed4245c0be31d5adb4c0ef2d");
+        requestDTO.setMerchantId("100000014");
         requestDTO.setRateId("100001");
-        requestDTO.setCardHolder(" ");
+        requestDTO.setAmount("");
+        requestDTO.setCardHolder("");
         requestDTO.setCardNumber("");
         requestDTO.setIdCardNumber("");
         requestDTO.setPhone("");
@@ -42,8 +46,6 @@ public class CardRegister {
         requestDTO.setExpiration("");
 
         //短信
-        requestDTO.setSmsOrderId("");
-        requestDTO.setSmsCode("");
 
         //签名
         String signature = SignatureUtil.signByObj(ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,requestDTO);
@@ -53,7 +55,7 @@ public class CardRegister {
 
         //发送请求
         String json = DataParseUtil.getJson(requestDTO);
-        String url = ServiceProviderConfig.URL+"card/register";
+        String url = ServiceProviderConfig.URL+"payment/consume";
         System.out.println("请求参数为:"+json);
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(ServiceProviderConfig.MEDIA_TYPE,json);
@@ -62,11 +64,13 @@ public class CardRegister {
 
         String tokenJsonRsp = response.body().string();
         System.out.println("响应JSON为: " + tokenJsonRsp);
-        BaseResponse<CardRegisterResponseDTO> baseResponse = null;
-        CardRegisterResponseDTO cardRegisterResponseDTO = null;
+        BaseResponse<ConsumeResponseDTO> baseResponse = null;
+        ConsumeResponseDTO consumeResponseDTO = null;
         if (response.isSuccessful()) {
-            baseResponse = DataParseUtil.getObj(tokenJsonRsp,new TypeReference<BaseResponse<CardRegisterResponseDTO>>(){});
-            cardRegisterResponseDTO = baseResponse.getData();
+            baseResponse = DataParseUtil.getObj(tokenJsonRsp,new TypeReference<BaseResponse<ConsumeResponseDTO>>(){});
+            consumeResponseDTO = baseResponse.getData();
+            if (consumeResponseDTO!=null)
+                System.out.println(consumeResponseDTO.toString());
         }
         else {
             System.out.println("响应码:"+response.code());

@@ -34,7 +34,7 @@ public class MerchantInfo {
         //必填数据
         requestDTO.setServiceProviderId(ServiceProviderConfig.SERVICE_PROVIDER_ID);
         requestDTO.setToken(token);
-        requestDTO.setMerchantId("100000011");
+        requestDTO.setMerchantId("");
 
         /**
          * 操作类型
@@ -43,7 +43,7 @@ public class MerchantInfo {
          * 3.新增交易费率(暂未开通)
          * 4.变更结算卡（暂未开通）
          */
-        requestDTO.setOperationType("2");
+        requestDTO.setOperationType("1");
 
         //当类型为 1 时必填
         requestDTO.setWithdrawDepositRate("0");
@@ -52,8 +52,8 @@ public class MerchantInfo {
 
         //当类型为2 时必填
         requestDTO.setRateId("100001");
-        requestDTO.setCreditCardRate("0.05");
-        requestDTO.setDebitCardRate("0.05");
+        requestDTO.setCreditCardRate("0.0045");
+        requestDTO.setDebitCardRate("0.0045");
 
         //签名
         String signature = SignatureUtil.signByObj(ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,requestDTO);

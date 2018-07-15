@@ -34,12 +34,11 @@ public class MerchantRegister {
         MerchantRegisterRequestDTO requestDTO = new MerchantRegisterRequestDTO();
         requestDTO.setServiceProviderId(ServiceProviderConfig.SERVICE_PROVIDER_ID);
         requestDTO.setToken(token);
-        requestDTO.setMerchantName("张三的店铺");
-        requestDTO.setMerchantRealName("靳嘉楠");
-        requestDTO.setIdCardNumber("140428199607259239");
-        requestDTO.setCardNumber("4367420064581053839");
-        requestDTO.setPhone("15620727048");
-        requestDTO.setBankAccountType("2");
+        requestDTO.setMerchantName("");
+        requestDTO.setMerchantRealName("");
+        requestDTO.setIdCardNumber("");
+        requestDTO.setCardNumber("");
+        requestDTO.setPhone("");
         requestDTO.setWithdrawDepositRate("0");
         requestDTO.setWithdrawDepositCharge("200");
         requestDTO.setIsAutoSettlement("0");
@@ -48,13 +47,12 @@ public class MerchantRegister {
 
         MerchantRegisterRateInfoRequestDTO rateInfo1 = new MerchantRegisterRateInfoRequestDTO();
         rateInfo1.setRateId("100001");
-        rateInfo1.setCreditCardRate("0.02");
-        rateInfo1.setDebitCardRate("0.02");
+        rateInfo1.setCreditCardRate("0.002");
+        rateInfo1.setDebitCardRate("0.002");
         rateInfoRequestDTOList.add(rateInfo1);
 
 
         //签名
-
         String signature = SignatureUtil.signByObj(ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,requestDTO);
 
         //组装请求参数

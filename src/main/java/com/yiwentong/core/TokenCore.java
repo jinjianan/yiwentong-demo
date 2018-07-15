@@ -12,9 +12,6 @@ import okhttp3.*;
 
 import java.io.IOException;
 
-/**
- * @author 靳嘉楠
- */
 public class TokenCore {
 
     public static void main(String[] args) {

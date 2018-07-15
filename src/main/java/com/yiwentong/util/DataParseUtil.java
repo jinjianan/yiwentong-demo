@@ -13,10 +13,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author 靳嘉楠
- **/
-
 public class DataParseUtil {
 
     /**

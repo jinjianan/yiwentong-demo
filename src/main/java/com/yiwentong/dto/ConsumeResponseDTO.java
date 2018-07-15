@@ -1,25 +1,11 @@
 package com.yiwentong.dto;
 
-public class CardRegisterResponseDTO {
+public class ConsumeResponseDTO {
 
-    // 服务商编号
     private String serviceProviderId;
-
-    //商户ID
     private String merchantId;
-
-    //卡号
+    private String orderId;
     private String cardNumber;
-
-    public CardRegisterResponseDTO() {
-    }
-
-    public CardRegisterResponseDTO(String serviceProviderId, String merchantId, String cardNumber) {
-        this.serviceProviderId = serviceProviderId;
-        this.merchantId = merchantId;
-        this.cardNumber = cardNumber;
-    }
-
     public String getServiceProviderId() {
         return serviceProviderId;
     }
@@ -36,6 +22,14 @@ public class CardRegisterResponseDTO {
         this.merchantId = merchantId;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     public String getCardNumber() {
         return cardNumber;
     }
@@ -44,4 +38,13 @@ public class CardRegisterResponseDTO {
         this.cardNumber = cardNumber;
     }
 
+    @Override
+    public String toString() {
+        return "ConsumeResponseDTO{" +
+                "serviceProviderId='" + serviceProviderId + '\'' +
+                ", merchantId='" + merchantId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                '}';
+    }
 }

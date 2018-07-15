@@ -3,7 +3,10 @@ package com.yiwentong.core;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.yiwentong.constant.ServiceProviderConfig;
 import com.yiwentong.constant.TokenType;
-import com.yiwentong.dto.*;
+import com.yiwentong.dto.BaseResponse;
+import com.yiwentong.dto.CardRegisterResponseDTO;
+import com.yiwentong.dto.ConsumeRequestDTO;
+import com.yiwentong.dto.WithdrawRequestDTO;
 import com.yiwentong.util.DataParseUtil;
 import com.yiwentong.util.SignatureUtil;
 import okhttp3.OkHttpClient;
@@ -12,11 +15,12 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.UUID;
 
 /**
- * 开卡
+ * 提现
  */
-public class CardRegister {
+public class Withdraw {
 
     public static void main(String[] args) throws IOException{
 
@@ -24,26 +28,19 @@ public class CardRegister {
         String token = TokenCore.getToken(
                 ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,
                 ServiceProviderConfig.SERVICE_PROVIDER_ID,
-                TokenType.CARD_BIND);
+                TokenType.WITHDRAW);
 
         //构建签名参数
-        CardRegisterRequstDTO requestDTO = new CardRegisterRequstDTO();
+        WithdrawRequestDTO requestDTO = new WithdrawRequestDTO();
         requestDTO.setServiceProviderId(ServiceProviderConfig.SERVICE_PROVIDER_ID);
         requestDTO.setToken(token);
+        requestDTO.setOrderId(UUID.randomUUID().toString().replace("-",""));
+//        requestDTO.setOrderId("e3aca0d0ed4245c0be31d5adb4c0ef2d");
         requestDTO.setMerchantId("");
-        requestDTO.setRateId("100001");
-        requestDTO.setCardHolder(" ");
+        requestDTO.setWalletType("");
+        requestDTO.setAmount("");
+        requestDTO.setCardHolder("");
         requestDTO.setCardNumber("");
-        requestDTO.setIdCardNumber("");
-        requestDTO.setPhone("");
-
-        //信用卡
-        requestDTO.setCvn2("");
-        requestDTO.setExpiration("");
-
-        //短信
-        requestDTO.setSmsOrderId("");
-        requestDTO.setSmsCode("");
 
         //签名
         String signature = SignatureUtil.signByObj(ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,requestDTO);
@@ -53,7 +50,7 @@ public class CardRegister {
 
         //发送请求
         String json = DataParseUtil.getJson(requestDTO);
-        String url = ServiceProviderConfig.URL+"card/register";
+        String url = ServiceProviderConfig.URL+"payment/withdraw";
         System.out.println("请求参数为:"+json);
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(ServiceProviderConfig.MEDIA_TYPE,json);

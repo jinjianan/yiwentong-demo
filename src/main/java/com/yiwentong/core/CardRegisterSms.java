@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 商户注册
+ * 开卡短信
  */
 public class CardRegisterSms {
 
@@ -32,13 +32,12 @@ public class CardRegisterSms {
         CardRegisterSmsRequestDTO requestDTO = new CardRegisterSmsRequestDTO();
         requestDTO.setServiceProviderId(ServiceProviderConfig.SERVICE_PROVIDER_ID);
         requestDTO.setToken(token);
-        requestDTO.setMerchantId("100000011");
-        requestDTO.setRateId("100001");
-        requestDTO.setCardHolder("靳嘉楠");
-        requestDTO.setCardNumber("4367420064581053839");
-        requestDTO.setCardType("1");
-        requestDTO.setIdCardNumber("140428199607259239");
-        requestDTO.setPhone("15620727048");
+        requestDTO.setMerchantId("");
+        requestDTO.setRateId("");
+        requestDTO.setCardHolder("");
+        requestDTO.setCardNumber("");
+        requestDTO.setIdCardNumber("");
+        requestDTO.setPhone("");
 
         //签名
         String signature = SignatureUtil.signByObj(ServiceProviderConfig.SERVICE_PROVIDER_SECRET_KEY,requestDTO);

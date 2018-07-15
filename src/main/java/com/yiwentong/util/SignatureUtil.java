@@ -7,8 +7,6 @@ import java.util.TreeMap;
 
 /**
  * 签名工具类
- * @author 靳嘉楠
- * @date 2018/6/17 19:21
  */
 public class SignatureUtil {
 
